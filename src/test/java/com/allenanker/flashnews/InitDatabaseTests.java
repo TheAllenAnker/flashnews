@@ -2,6 +2,7 @@ package com.allenanker.flashnews;
 
 import com.allenanker.flashnews.dao.UserDAO;
 import com.allenanker.flashnews.model.User;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,13 @@ public class InitDatabaseTests {
         user.setName("");
         user.setPassword("");
         user.setSalt("");
+        user.setId(1);
         userDAO.addUser(user);
+        user.setPassword("newPassword");
+        userDAO.updatePassword(user);
+        Assert.assertEquals("newPassword", userDAO.selectById(1).getPassword());
+        userDAO.deleteById(1);
+        Assert.assertNull(userDAO.selectById(1));
 	}
 
 }
