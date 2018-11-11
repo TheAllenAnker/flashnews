@@ -6,10 +6,8 @@ import com.allenanker.flashnews.service.NewsService;
 import com.allenanker.flashnews.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +22,7 @@ public class HomeController {
 
     @RequestMapping(path = {"/", "/index"})
     public String index(Map<String, Object> model) {
-        List<News> newsList = newsService.getLastestNews(0, 0, 10);
+        List<News> newsList = newsService.getLastestNews(1, 0, 10);
         List<ViewObject> vos = new ArrayList<>();
         for (News news : newsList) {
             ViewObject vo = new ViewObject();

@@ -110,45 +110,45 @@
             <div class="jscroll-inner">
                 <div class="daily">
 
-                    #set($cur_date = '')
-                    #foreach($vo in $vos)
-                    #if ($cur_date != $date.format('yyyy-MM-dd', $vo.news.createdDate))
-                        #if ($foreach.index > 0)
+                    <#assign cur_date = ''>
+                    <#list vos as vo>
+                    <#if cur_date != (vo.news.createdDate?string('yyyy-MM-dd'))>
+                        <#if vo_index gt 0>
                             </div> ## 上一个要收尾
-                        #end
-                        #set($cur_date = $date.format('yyyy-MM-dd', $vo.news.createdDate))
+                        </#if>
+                        <#assign current_node = (vo.news.createdDate?string('yyyy-MM-dd'))>
                     <h3 class="date">
                         <i class="fa icon-calendar"></i>
-                        <span>FlashNews &nbsp; $date.format('yyyy-MM-dd', $vo.news.createdDate)</span>
+                        <span>FlashNews &nbsp; ${vo.news.createdDate?string('yyyy-MM-dd')}</span>
                     </h3>
 
                     <div class="posts">
-                    #end
+                    </#if>
                         <div class="post">
                             <div class="votebar">
-                                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span class="count">$!{vo.news.likeCount}</span></button>
+                                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount}</span></button>
                                 <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
                                 </button>
                             </div>
                             <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
                                 <div >
-                                    <img class="content-img" src="$!{vo.news.image}" alt="">
+                                    <img class="content-img" src="${vo.news.image}" alt="">
                                 </div>
                                 <div class="content-main">
                                     <h3 class="title">
-                                        <a target="_blank" rel="external nofollow" href="$!{vo.news.link}">$!{vo.news.title}</a>
+                                        <a target="_blank" rel="external nofollow" href="${vo.news.link}">${vo.news.title}</a>
                                     </h3>
                                     <div class="meta">
-                                        $!{vo.news.link}
+                                        ${vo.news.link}
                                         <span>
-                                            <i class="fa icon-comment"></i> $!{vo.news.commentCount}
+                                            <i class="fa icon-comment"></i> ${vo.news.commentCount}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="user-info">
                                 <div class="user-avatar">
-                                    <a href="/user/$!{vo.user.id}/"><img width="32" class="img-circle" src="$!{vo.user.headUrl}"></a>
+                                    <a href="#"><img width="32" class="img-circle" src="#"></a>
                                 </div>
 
                                 <!--
@@ -163,19 +163,20 @@
                                 -->
                             </div>
 
-                            <div class="subject-name">来自 <a href="/user/$!{vo.user.id}/">$!{vo.user.name}</a></div>
+                            <div class="subject-name">来自 <a href="#">#</a></div>
                         </div>
 
                         <!--
                         <div class="alert alert-warning subscribe-banner" role="alert">
                           《头条八卦》，每日 Top 3 通过邮件发送给你。      <a class="btn btn-info btn-sm pull-right" href="http://nowcoder.com/account/settings">立即订阅</a>
-                        </div>
+                        </div>vo
                         -->
-                    #if ($foreach.count == $vos.size()) ##最后有个元素要收尾
+                        <#--最后有个元素要收尾-->
+                    <#if !vo_has_next>
                     </div>
-                    #end
+                    </#if>
 
-                    #end
+                    </#list>
 
 
                 </div>

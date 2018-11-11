@@ -27,10 +27,10 @@ public class InitDatabaseTests {
 	@Test
 	public void test1() {
         User user = new User();
-        user.setHeadUrl("");
-        user.setName("");
-        user.setPassword("");
-        user.setSalt("");
+        user.setHeadUrl("hearUrl");
+        user.setName("name");
+        user.setPassword("password");
+        user.setSalt("salt");
         user.setId(1);
         userDAO.addUser(user);
         user.setPassword("newPassword");
@@ -44,6 +44,8 @@ public class InitDatabaseTests {
         news.setTitle("News Title");
         news.setLink("https://www.baidu.com");
         news.setImage("https://www.image.com");
+        news.setLikeCount(2);
+        news.setCommentCount(3);
         news.setCreatedDate(new Date());
         userDAO.addUser(user);
         newsDAO.addNews(news);
