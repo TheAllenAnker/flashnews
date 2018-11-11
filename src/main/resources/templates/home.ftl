@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>头条资讯 - 牛客网</title>
+    <title>FlashNews - shadder</title>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="keywords" content="读《Web 全栈工程师的自我修养》">
-    <meta name="description" content="阅读影浅分享的读《Web 全栈工程师的自我修养》，就在牛客网。">
+    <meta name="description" content="阅读影浅分享的读《Web 全栈工程师的自我修养》">
 
     <link rel="stylesheet" type="text/css" href="../static/styles/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="../static/styles/font-awesome.min.css">
@@ -30,7 +30,7 @@
                 </button>
 
                 <a href="http://nowcoder.com/" class="navbar-brand logo">
-                  <h1>头条资讯</h1>
+                  <h1>FlashNews</h1>
                   <h3>你关心的才是头条</h3>
                 </a>
             </div>
@@ -119,7 +119,7 @@
                         #set($cur_date = $date.format('yyyy-MM-dd', $vo.news.createdDate))
                     <h3 class="date">
                         <i class="fa icon-calendar"></i>
-                        <span>头条资讯 &nbsp; $date.format('yyyy-MM-dd', $vo.news.createdDate)</span>
+                        <span>FlashNews &nbsp; $date.format('yyyy-MM-dd', $vo.news.createdDate)</span>
                     </h3>
 
                     <div class="posts">
@@ -188,9 +188,9 @@
         <div class="container">
             <p class="text-center">
                 <a href="http://nowcoder.com/about">关于我们</a>
-                <a href="http://nowcoder.com/download">头条客户端</a>
+                <a href="http://nowcoder.com/download">FlashNews 客户端</a>
             </p>
-            <p class="text-center">© 2013-2016 头条八卦</p>
+            <p class="text-center">© 2017-2018 FlashNews</p>
         </div>
 
     </footer>

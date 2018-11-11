@@ -1,9 +1,11 @@
 package com.allenanker.flashnews.dao;
 
 import com.allenanker.flashnews.model.News;
+import com.allenanker.flashnews.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -17,6 +19,8 @@ public interface NewsDAO {
             "#{commentCount}, #{createdDate}, #{userId})"})
     int addNews(News news);
 
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{userId} ORDER BY id DESC LIMIT #{offset}," +
+            "#{limit}"})
     List<News> selectByUserIdAndOffset(@Param("userId") int userId, @Param("offset") int offset,
                                        @Param("limit") int limit);
 }
