@@ -40,8 +40,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class=""><a href="http://nowcoder.com/explore">发现</a></li>
 
-                    <li><a href="http://nowcoder.com/signin">站内信</a></li>
-                    <li class=""><a href="http://nowcoder.com/about">登陆</a></li>
+                    <li><a href="#">站内信</a></li>
+                    <li class=""><a href="#">登陆</a></li>
                 </ul>
 
             </nav>

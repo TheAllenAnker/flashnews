@@ -46,4 +46,26 @@ public class UserService {
 
         return map;
     }
+
+    public Map<String, Object> login(String username, String password) {
+        Map<String, Object> map = new HashMap<>();
+        if (StringUtils.isNullOrEmpty(username)) {
+            map.put("msgusername", "Username cannot be empty.");
+        }
+        if (StringUtils.isNullOrEmpty(password)) {
+            map.put("msgpassword", "Password cannot be empty.");
+        }
+
+        User user = userDAO.selectByName(username);
+        if (user == null) {
+            map.put("msgname", "No such user.");
+            return map;
+        }
+        if (!user.getPassword().equals(FlashNewsUtil.MD5(password + user.getSalt()))) {
+            map.put("msgpassword", "Username or Password is wrong.");
+            return map;
+        }
+
+        return map;
+    }
 }

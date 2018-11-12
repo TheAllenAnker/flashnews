@@ -1,8 +1,7 @@
-package com.allenanker.flashnews.dao;
+package com.allenanker.flashnews.model;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class ViewObject {
     private Map<String, Object> objs = new HashMap<String, Object>();

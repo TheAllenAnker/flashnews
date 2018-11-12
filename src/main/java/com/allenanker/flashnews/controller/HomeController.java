@@ -1,6 +1,6 @@
 package com.allenanker.flashnews.controller;
 
-import com.allenanker.flashnews.dao.ViewObject;
+import com.allenanker.flashnews.model.ViewObject;
 import com.allenanker.flashnews.model.News;
 import com.allenanker.flashnews.service.NewsService;
 import com.allenanker.flashnews.service.UserService;

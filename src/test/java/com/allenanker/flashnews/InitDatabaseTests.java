@@ -1,7 +1,9 @@
 package com.allenanker.flashnews;
 
+import com.allenanker.flashnews.dao.LoginTicketDAO;
 import com.allenanker.flashnews.dao.NewsDAO;
 import com.allenanker.flashnews.dao.UserDAO;
+import com.allenanker.flashnews.model.LoginTicket;
 import com.allenanker.flashnews.model.News;
 import com.allenanker.flashnews.model.User;
 import org.junit.Assert;
@@ -23,6 +25,9 @@ public class InitDatabaseTests {
 
     @Autowired
     NewsDAO newsDAO;
+
+    @Autowired
+    LoginTicketDAO loginTicketDAO;
 
 	@Test
 	public void test1() {
@@ -51,4 +56,13 @@ public class InitDatabaseTests {
         newsDAO.addNews(news);
 	}
 
+	@Test
+	public void test2() {
+        LoginTicket ticket = new LoginTicket();
+        ticket.setTicket("ticket info");
+        ticket.setUserId(4);
+        ticket.setStatus(0);
+        ticket.setExpired(new Date());
+        loginTicketDAO.addTicket(ticket);
+    }
 }

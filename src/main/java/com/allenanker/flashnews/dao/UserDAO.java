@@ -2,8 +2,10 @@ package com.allenanker.flashnews.dao;
 
 import com.allenanker.flashnews.model.User;
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 
 @Mapper
+@Repository
 public interface UserDAO {
     String TABLE_NAME = "user";
     String INSERT_FIELDS = " name, password, salt, head_url ";

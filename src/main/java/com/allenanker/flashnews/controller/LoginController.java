@@ -41,4 +41,22 @@ public class LoginController {
             return FlashNewsUtil.getJSONString(1, "Registration Failed");
         }
     }
+
+    @RequestMapping(path = {"/login/"}, method = {RequestMethod.GET, RequestMethod.POST})
+    @ResponseBody
+    public String login(Map<String, Object> model, @RequestParam("username") String username,
+                      @RequestParam("password") String password, @RequestParam(value = "remember",
+            defaultValue = "0") int remember) {
+        try {
+            Map<String, Object> map = userService.register(username, password);
+            if (map.isEmpty()) {
+                return FlashNewsUtil.getJSONString(0, "Registration Succeeded.");
+            } else {
+                return FlashNewsUtil.getJSONString(1, map);
+            }
+        } catch (Exception e) {
+            logger.error("Registration Failed: " + e.getMessage());
+            return FlashNewsUtil.getJSONString(1, "Registration Failed");
+        }
+    }
 }
