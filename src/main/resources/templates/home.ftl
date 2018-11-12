@@ -6,16 +6,16 @@
     <meta name="keywords" content="读《Web 全栈工程师的自我修养》">
     <meta name="description" content="阅读影浅分享的读《Web 全栈工程师的自我修养》">
 
-    <link rel="stylesheet" type="text/css" href="../static/styles/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../static/styles/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/font-awesome.min.css">
 
-    <link rel="stylesheet" media="all" href="../static/styles/style.css">
+    <link rel="stylesheet" media="all" href="/styles/style.css">
 
-    <script src="../static/scripts/hm.js"></script>
-    <script src="../static/scripts/detail.js"></script>
+    <script src="/scripts/hm.js"></script>
+    <script src="/scripts/detail.js"></script>
 
-    <script type="text/javascript" src="../static/scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/scripts/jquery.qrcode.min.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.qrcode.min.js"></script>
 </head>
 <body class="welcome_index">
 
@@ -41,7 +41,11 @@
                     <li class=""><a href="http://nowcoder.com/explore">发现</a></li>
 
                     <li><a href="#">站内信</a></li>
-                    <li class=""><a href="#">登陆</a></li>
+                    <#if user??>
+                        <li class=""><a href="#">${user.name}</a></li>
+                    <#else >
+                        <li class=""><a href="#">登陆</a></li>
+                    </#if>
                 </ul>
 
             </nav>

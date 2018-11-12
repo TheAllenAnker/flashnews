@@ -18,7 +18,7 @@ public interface LoginTicketDAO {
     @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{id}"})
     LoginTicket selectById(int id);
 
-    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE ticket#{ticket}"})
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE ticket=#{ticket}"})
     LoginTicket selectByTicket(String ticket);
 
     @Update({"UPDATE ", TABLE_NAME, " SET status=#{status} WHERE ticket=#{ticket}"})
