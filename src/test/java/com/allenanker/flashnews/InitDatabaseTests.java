@@ -45,7 +45,7 @@ public class InitDatabaseTests {
         Assert.assertNull(userDAO.selectById(1));
 
         News news = new News();
-        news.setUserId(1);
+        news.setUserId(2);
         news.setTitle("News Title");
         news.setLink("https://www.baidu.com");
         news.setImage("https://www.image.com");

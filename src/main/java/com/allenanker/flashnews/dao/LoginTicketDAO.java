@@ -16,10 +16,10 @@ public interface LoginTicketDAO {
     int addTicket(LoginTicket ticket);
 
     @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{id}"})
-    User selectById(int id);
+    LoginTicket selectById(int id);
 
     @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE ticket#{ticket}"})
-    User selectByTicket(String ticket);
+    LoginTicket selectByTicket(String ticket);
 
     @Update({"UPDATE ", TABLE_NAME, " SET status=#{status} WHERE ticket=#{ticket}"})
     void updateStatus(@Param("ticket") String ticket, @Param("status") int status);
