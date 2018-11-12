@@ -163,7 +163,7 @@
                                 -->
                             </div>
 
-                            <div class="subject-name">来自 <a href="#">#</a></div>
+                            <div class="subject-name">来自 <a href="#">${vo.user.name}</a></div>
                         </div>
 
                         <!--

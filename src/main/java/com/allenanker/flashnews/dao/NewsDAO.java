@@ -1,7 +1,6 @@
 package com.allenanker.flashnews.dao;
 
 import com.allenanker.flashnews.model.News;
-import com.allenanker.flashnews.model.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
