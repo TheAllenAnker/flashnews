@@ -20,7 +20,8 @@ public interface NewsDAO {
             "#{commentCount}, #{createdDate}, #{userId})"})
     int addNews(News news);
 
-    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{userId} ORDER BY id DESC LIMIT #{offset}," +
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE user_id=#{userId} ORDER BY id DESC LIMIT " +
+            "#{offset}," +
             "#{limit}"})
     List<News> selectByUserIdAndOffset(@Param("userId") int userId, @Param("offset") int offset,
                                        @Param("limit") int limit);

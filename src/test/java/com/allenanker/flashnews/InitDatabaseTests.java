@@ -65,4 +65,25 @@ public class InitDatabaseTests {
         ticket.setExpired(new Date());
         loginTicketDAO.addTicket(ticket);
     }
+
+    @Test
+    public void addNewsTest3() {
+        User user = new User();
+        user.setHeadUrl("hearUrl");
+        user.setName("name");
+        user.setPassword("password");
+        user.setSalt("salt");
+        userDAO.addUser(user);
+        for (int i = 1; i <= 10; i++) {
+            News news = new News();
+            news.setUserId(1);
+            news.setTitle("News Title");
+            news.setLink("https://www.baidu.com");
+            news.setImage("https://www.image.com");
+            news.setLikeCount(i);
+            news.setCommentCount(i);
+            news.setCreatedDate(new Date());
+            newsDAO.addNews(news);
+        }
+    }
 }

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>FlashNews - shadder</title>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="keywords" content="读《Web 全栈工程师的自我修养》">
     <meta name="description" content="阅读影浅分享的读《Web 全栈工程师的自我修养》">
 
@@ -19,40 +21,41 @@
 </head>
 <body class="welcome_index">
 
-    <header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
+<header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
+                    data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <a href="http://nowcoder.com/" class="navbar-brand logo">
-                  <h1>FlashNews</h1>
-                  <h3>你关心的才是头条</h3>
-                </a>
-            </div>
+            <a href="http://nowcoder.com/" class="navbar-brand logo">
+                <h1>FlashNews</h1>
+                <h3>你关心的才是头条</h3>
+            </a>
+        </div>
 
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class=""><a href="http://nowcoder.com/explore">发现</a></li>
+            <ul class="nav navbar-nav navbar-right">
+                <li class=""><a href="http://nowcoder.com/explore">发现</a></li>
 
-                    <li><a href="#">站内信</a></li>
+                <li><a href="#">站内信</a></li>
                     <#if user??>
                         <li class=""><a href="#">${user.name}</a></li>
                     <#else >
                         <li class=""><a href="#">登陆</a></li>
                     </#if>
-                </ul>
+            </ul>
 
-            </nav>
-        </div>
-    </header>
+        </nav>
+    </div>
+</header>
 
-    <div id="main">
+<div id="main">
     <!--
         <div class="hero">
             <div class="container-fluid">
@@ -110,37 +113,40 @@
         </div>
         -->
 
-        <div class="container" id="daily">
-            <div class="jscroll-inner">
-                <div class="daily">
+    <div class="container" id="daily">
+        <div class="jscroll-inner">
+        <div class="daily">
 
                     <#assign cur_date = ''>
                     <#list vos as vo>
-                    <#if cur_date != (vo.news.createdDate?string('yyyy-MM-dd'))>
-                        <#if vo_index gt 0>
+                        <#if cur_date != (vo.news.createdDate?string('yyyy-MM-dd'))>
+                            <#if vo_index gt 0>
                             </div> ## 上一个要收尾
-                        </#if>
-                        <#assign current_node = (vo.news.createdDate?string('yyyy-MM-dd'))>
+                            </#if>
+                            <#assign current_node = (vo.news.createdDate?string('yyyy-MM-dd'))>
                     <h3 class="date">
                         <i class="fa icon-calendar"></i>
                         <span>FlashNews &nbsp; ${vo.news.createdDate?string('yyyy-MM-dd')}</span>
                     </h3>
 
                     <div class="posts">
-                    </#if>
+                        </#if>
                         <div class="post">
                             <div class="votebar">
-                                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span class="count">${vo.news.likeCount}</span></button>
-                                <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
+                                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span
+                                        class="count">${vo.news.likeCount}</span></button>
+                                <button class="click-dislike down" aria-pressed="true" title="反对"><i
+                                        class="vote-arrow"></i>
                                 </button>
                             </div>
                             <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
-                                <div >
+                                <div>
                                     <img class="content-img" src="${vo.news.image}" alt="">
                                 </div>
                                 <div class="content-main">
                                     <h3 class="title">
-                                        <a target="_blank" rel="external nofollow" href="${vo.news.link}">${vo.news.title}</a>
+                                        <a target="_blank" rel="external nofollow"
+                                           href="${vo.news.link}">${vo.news.title}</a>
                                     </h3>
                                     <div class="meta">
                                         ${vo.news.link}
@@ -175,61 +181,71 @@
                           《头条八卦》，每日 Top 3 通过邮件发送给你。      <a class="btn btn-info btn-sm pull-right" href="http://nowcoder.com/account/settings">立即订阅</a>
                         </div>vo
                         -->
-                        <#--最后有个元素要收尾-->
-                    <#if !vo_has_next>
+                    <#--最后有个元素要收尾-->
+                        <#if !vo_has_next>
                     </div>
-                    </#if>
+                        </#if>
 
                     </#list>
 
 
-                </div>
-            </div>
         </div>
+    </div>
+</div>
 
+</div>
+
+<footer>
+    <div class="container">
+        <p class="text-center">
+            <a href="http://nowcoder.com/about">关于我们</a>
+            <a href="http://nowcoder.com/download">FlashNews 客户端</a>
+        </p>
+        <p class="text-center">© 2017-2018 FlashNews</p>
     </div>
 
-    <footer>
-        <div class="container">
-            <p class="text-center">
-                <a href="http://nowcoder.com/about">关于我们</a>
-                <a href="http://nowcoder.com/download">FlashNews 客户端</a>
-            </p>
-            <p class="text-center">© 2017-2018 FlashNews</p>
-        </div>
+</footer>
 
-    </footer>
-
-  <div id="quick-download">
-        <button type="button" class="close-link btn-link" data-toggle="modal" data-target="#quick-download-app-modal"><i class="fa icon-times-circle"></i></button>
+<div id="quick-download">
+    <button type="button" class="close-link btn-link" data-toggle="modal" data-target="#quick-download-app-modal"><i
+            class="fa icon-times-circle"></i></button>
 
     <a class="download-link" href="http://nowcoder.com/download">
-      <h3>牛客网</h3>
-      <h4>程序员的首选学习分享平台</h4>
-      <button type="button" class="btn btn-info btn-sm">下载 APP</button>
+        <h3>牛客网</h3>
+        <h4>程序员的首选学习分享平台</h4>
+        <button type="button" class="btn btn-info btn-sm">下载 APP</button>
     </a>
 
     <div class="modal fade" id="quick-download-app-modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">提示</div>
-          <div class="modal-body">
-            <div class="checkbox">
-              <label class="i-checks">
-                <input id="already-installed" type="checkbox"><i></i> 我已安装了牛客网App，不再显示
-              </label>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">提示</div>
+                <div class="modal-body">
+                    <div class="checkbox">
+                        <label class="i-checks">
+                            <input id="already-installed" type="checkbox"><i></i> 我已安装了牛客网App，不再显示
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-block btn-default" id="close-quick-download-app-modal">关 闭
+                    </button>
+                </div>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-block btn-default" id="close-quick-download-app-modal">关 闭</button>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <script>
-  </script>
+<script>window.loginpop = ${pop}</script>
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+<script type="text/javascript" src="/scripts/main/base/base.js"></script>
+<script type="text/javascript" src="/scripts/main/base/util.js"></script>
+<script type="text/javascript" src="/scripts/main/base/event.js"></script>
+<script type="text/javascript" src="/scripts/main/component/component.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popup.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popupLogin.js"></script>
+<script type="text/javascript" src="/scripts/main/site/home.js"></script>
 
 
-</body></html>
+</body>
+</html>
