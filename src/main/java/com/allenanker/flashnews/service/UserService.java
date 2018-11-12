@@ -78,6 +78,10 @@ public class UserService {
         return map;
     }
 
+    public void logout(String ticket) {
+        loginTicketDAO.updateStatus(ticket, 1);
+    }
+
     private String addLoginTicket(int userId) {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(userId);
