@@ -38,4 +38,8 @@ public class NewsService {
 
         return FlashNewsUtil.FLASHNEWS_DOMAIN + "image?name=" + fileName;
     }
+
+    public void addNews(News news) {
+        newsDAO.addNews(news);
+    }
 }

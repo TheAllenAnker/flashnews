@@ -13,6 +13,7 @@ public class FlashNewsUtil {
     private static final String[] ALLOWED_IMAEG_EXT = new String[]{"png", "jpg", "jpeg", "bmp"};
     public static final String UPLOAD_IMAGE_DIR = "/Users/barryallen/Desktop/Development/upload/";
     public static final String FLASHNEWS_DOMAIN = "http://127.0.0.1:8080/";
+    public static final String QINIU_DOMAIN_PREFIX = "http://pi4wpldvt.bkt.clouddn.com/";
 
     public static boolean isImageFileAllowed(String fileExt) {
         for (String ext : ALLOWED_IMAEG_EXT) {
