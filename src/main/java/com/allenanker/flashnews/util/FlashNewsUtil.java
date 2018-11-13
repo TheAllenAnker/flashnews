@@ -10,6 +10,20 @@ import java.util.Map;
 public class FlashNewsUtil {
     private static final Logger logger = LoggerFactory.getLogger(FlashNewsUtil.class);
 
+    private static final String[] ALLOWED_IMAEG_EXT = new String[]{"png", "jpg", "jpeg", "bmp"};
+    public static final String UPLOAD_IMAGE_DIR = "/Users/barryallen/Desktop/Development/upload/";
+    public static final String FLASHNEWS_DOMAIN = "http://127.0.0.1:8080/";
+
+    public static boolean isImageFileAllowed(String fileExt) {
+        for (String ext : ALLOWED_IMAEG_EXT) {
+            if (ext.equals(fileExt)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static String MD5(String key) {
         char hexDigits[] = {
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'
