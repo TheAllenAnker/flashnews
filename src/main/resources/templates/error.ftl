@@ -5,5 +5,4 @@
 <body>
 Something wrong: ${status} ${error}
 </body>
-
 </html>

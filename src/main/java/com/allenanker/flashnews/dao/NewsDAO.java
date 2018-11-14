@@ -25,4 +25,10 @@ public interface NewsDAO {
             "#{limit}"})
     List<News> selectByUserIdAndOffset(@Param("userId") int userId, @Param("offset") int offset,
                                        @Param("limit") int limit);
+
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " ORDER BY id DESC LIMIT #{offset},#{limit}"})
+    List<News> selectLastestNews(@Param("offset") int offset, @Param("limit") int limit);
+
+    @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{id}"})
+    News getById(int newsId);
 }

@@ -21,39 +21,7 @@
 </head>
 <body class="welcome_index">
 
-<header class="navbar navbar-default navbar-static-top bs-docs-nav" id="top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse"
-                    data-target=".bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <a href="http://nowcoder.com/" class="navbar-brand logo">
-                <h1>FlashNews</h1>
-                <h3>你关心的才是头条</h3>
-            </a>
-        </div>
-
-        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-
-            <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="http://nowcoder.com/explore">发现</a></li>
-
-                <li><a href="#">站内信</a></li>
-                    <#if user??>
-                        <li class=""><a href="#">${user.name}</a></li>
-                    <#else >
-                        <li class=""><a href="#">登陆</a></li>
-                    </#if>
-            </ul>
-
-        </nav>
-    </div>
-</header>
+<#include "header.ftl">
 
 <div id="main">
     <!--
@@ -139,7 +107,7 @@
                                         class="vote-arrow"></i>
                                 </button>
                             </div>
-                            <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
+                            <div class="content" data-url="${vo.news.link}">
                                 <div>
                                     <img class="content-img" src="${vo.news.image}" alt="">
                                 </div>
@@ -158,7 +126,7 @@
                             </div>
                             <div class="user-info">
                                 <div class="user-avatar">
-                                    <a href="#"><img width="32" class="img-circle" src="#"></a>
+                                    <a href="#"><img width="32" class="img-circle" src="${vo.user.headUrl}"></a>
                                 </div>
 
                                 <!--
@@ -195,16 +163,7 @@
 
 </div>
 
-<footer>
-    <div class="container">
-        <p class="text-center">
-            <a href="http://nowcoder.com/about">关于我们</a>
-            <a href="http://nowcoder.com/download">FlashNews 客户端</a>
-        </p>
-        <p class="text-center">© 2017-2018 FlashNews</p>
-    </div>
-
-</footer>
+<#include "footer.ftl">
 
 <div id="quick-download">
     <button type="button" class="close-link btn-link" data-toggle="modal" data-target="#quick-download-app-modal"><i
@@ -236,7 +195,9 @@
     </div>
 </div>
 
-<script>window.loginpop = ${pop}</script>
+<#if pop??>
+    <script>window.loginpop = ${pop};</script>
+</#if>
 <script type="text/javascript" src="/scripts/jquery.js"></script>
 <script type="text/javascript" src="/scripts/main/base/base.js"></script>
 <script type="text/javascript" src="/scripts/main/base/util.js"></script>

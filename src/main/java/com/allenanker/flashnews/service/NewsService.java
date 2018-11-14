@@ -18,7 +18,11 @@ public class NewsService {
     @Autowired
     private NewsDAO newsDAO;
 
-    public List<News> getLastestNews(int userId, int offset, int limit) {
+    public List<News> getLastestNews(int offset, int limit) {
+        return newsDAO.selectLastestNews(offset, limit);
+    }
+
+    public List<News> getNewsByUserId(int userId, int offset, int limit) {
         return newsDAO.selectByUserIdAndOffset(userId, offset, limit);
     }
 
@@ -41,5 +45,9 @@ public class NewsService {
 
     public void addNews(News news) {
         newsDAO.addNews(news);
+    }
+
+    public News getById(int newsId) {
+        return newsDAO.getById(newsId);
     }
 }

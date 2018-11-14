@@ -25,14 +25,27 @@ public class HomeController {
 
     @RequestMapping(path = {"/", "/index"}, method = {RequestMethod.GET, RequestMethod.POST})
     public String index(Map<String, Object> model, @RequestParam(value = "pop", defaultValue = "0") int pop) {
-        model.put("vos", getNews(1, 0, 10));
+        model.put("vos", getLastestNews(0, 10));
         model.put("pop", pop);
 
         return "home";
     }
 
     private List<ViewObject> getNews(int userId, int offset, int limit) {
-        List<News> newsList = newsService.getLastestNews(userId, offset, limit);
+        List<News> newsList = newsService.getNewsByUserId(userId, offset, limit);
+        List<ViewObject> vos = new ArrayList<>();
+        for (News news : newsList) {
+            ViewObject vo = new ViewObject();
+            vo.set("news", news);
+            vo.set("user", userService.getUser(news.getUserId()));
+            vos.add(vo);
+        }
+
+        return vos;
+    }
+
+    private List<ViewObject> getLastestNews(int offset, int limit) {
+        List<News> newsList = newsService.getLastestNews(offset, limit);
         List<ViewObject> vos = new ArrayList<>();
         for (News news : newsList) {
             ViewObject vo = new ViewObject();
