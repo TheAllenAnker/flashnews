@@ -5,6 +5,7 @@ import com.allenanker.flashnews.dao.LoginTicketDAO;
 import com.allenanker.flashnews.dao.NewsDAO;
 import com.allenanker.flashnews.dao.UserDAO;
 import com.allenanker.flashnews.model.*;
+import com.allenanker.flashnews.util.FlashNewsUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -125,11 +126,12 @@ public class InitDatabaseTests {
                 commentDAO.addComment(comment);
             }
 
-            user.setPassword("newpassword");
+            user.setPassword(FlashNewsUtil.MD5("newpassword" + user.getSalt()));
             userDAO.updatePassword(user);
         }
 
-        Assert.assertEquals("newpassword", userDAO.selectById(1).getPassword());
+        Assert.assertEquals(FlashNewsUtil.MD5("newpassword" + userDAO.selectById(1).getSalt()),
+                userDAO.selectById(1).getPassword());
         userDAO.deleteById(1);
         Assert.assertNull(userDAO.selectById(1));
         Assert.assertEquals(1, loginTicketDAO.selectByTicket("TICKET1").getUserId());

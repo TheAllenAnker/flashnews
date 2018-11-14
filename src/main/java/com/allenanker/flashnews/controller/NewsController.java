@@ -41,6 +41,27 @@ public class NewsController {
     @Autowired
     private HostHolder hostHolder;
 
+    @RequestMapping(path = {"/addComment"}, method = {RequestMethod.POST})
+    public String addComment(@RequestParam("newsId") int newsId, @RequestParam("content") String content) {
+        try {
+            Comment comment = new Comment();
+            comment.setUserId(hostHolder.getUser().getId());
+            comment.setContent(content);
+            comment.setEntityId(newsId);
+            comment.setEntityType(EntityType.ENTITY_NEWS);
+            comment.setCreatedDate(new Date());
+            comment.setStatus(0);
+            commentService.addComment(comment);
+
+            int oldCommentCount = commentService.getCommentsCount(newsId, EntityType.ENTITY_NEWS);
+            newsService.updateCommentsCount(newsId, oldCommentCount + 1);
+        } catch (Exception e) {
+            logger.error("Commit Comment Error: " + e.getMessage());
+        }
+
+        return "redirect:/news/" + String.valueOf(newsId);
+    }
+
     @RequestMapping(path = {"/news/{newsId}"}, method = {RequestMethod.GET})
     public String newsDetail(@PathVariable("newsId") int newsId, Map<String, Object> map) {
         News news = newsService.getById(newsId);

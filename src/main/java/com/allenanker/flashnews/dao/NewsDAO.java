@@ -1,10 +1,7 @@
 package com.allenanker.flashnews.dao;
 
 import com.allenanker.flashnews.model.News;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,4 +28,7 @@ public interface NewsDAO {
 
     @Select({"SELECT ", SELECT_FIELDS, " FROM ", TABLE_NAME, " WHERE id=#{id}"})
     News getById(int newsId);
+
+    @Update({"UPDATE ", TABLE_NAME, " SET comment_count = #{commentCount} WHERE id=#{id}"})
+    int updateCommentCount(@Param("id") int id, @Param("commentCount") int commentCount);
 }
