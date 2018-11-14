@@ -1,8 +1,7 @@
 package com.allenanker.flashnews.controller;
 
-import com.allenanker.flashnews.model.HostHolder;
-import com.allenanker.flashnews.model.News;
-import com.allenanker.flashnews.model.User;
+import com.allenanker.flashnews.model.*;
+import com.allenanker.flashnews.service.CommentService;
 import com.allenanker.flashnews.service.NewsService;
 import com.allenanker.flashnews.service.QiniuService;
 import com.allenanker.flashnews.service.UserService;
@@ -18,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -35,14 +36,26 @@ public class NewsController {
     private QiniuService qiniuService;
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private HostHolder hostHolder;
 
     @RequestMapping(path = {"/news/{newsId}"}, method = {RequestMethod.GET})
     public String newsDetail(@PathVariable("newsId") int newsId, Map<String, Object> map) {
         News news = newsService.getById(newsId);
         if (news != null) {
-
+            List<Comment> comments = commentService.getCommentsByEntity(news.getId(), EntityType.ENTITY_NEWS);
+            List<ViewObject> commentVOs = new ArrayList<>();
+            for (Comment comment : comments) {
+                ViewObject commentVo = new ViewObject();
+                commentVo.set("comment", comment);
+                commentVo.set("user", userService.getUser(comment.getUserId()));
+                commentVOs.add(commentVo);
+            }
+            map.put("commentvos", commentVOs);
         }
+
         map.put("news", news);
         User owner = userService.getUser(news.getUserId());
         if (owner != null) {

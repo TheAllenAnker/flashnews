@@ -86,7 +86,7 @@
         </div>
 
         <div id="comments" class="comments">
-            <#list comments as commentvo>
+            <#list commentvos as commentvo>
             <div class="media">
                 <a class="media-left" href="http://nowcoder.com/u/210176">
                     <img src="${commentvo.user.headUrl}">
