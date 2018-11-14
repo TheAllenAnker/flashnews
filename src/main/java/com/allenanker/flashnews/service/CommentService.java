@@ -1,6 +1,6 @@
 package com.allenanker.flashnews.service;
 
-import com.allenanker.flashnews.dao.CommentDao;
+import com.allenanker.flashnews.dao.CommentDAO;
 import com.allenanker.flashnews.model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CommentService {
     @Autowired
-    private CommentDao commentDao;
+    private CommentDAO commentDao;
 
     public int addComment(Comment comment) {
         return commentDao.addComment(comment);

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface CommentDao {
+public interface CommentDAO {
     String TABLE_NAME = "comment";
     String INSERT_FIELDS = " user_id, entity_id, entity_type, content, created_date, status ";
     String SELECT_FIELDS = " id, " + INSERT_FIELDS;

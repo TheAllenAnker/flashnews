@@ -1,6 +1,6 @@
 package com.allenanker.flashnews;
 
-import com.allenanker.flashnews.dao.CommentDao;
+import com.allenanker.flashnews.dao.CommentDAO;
 import com.allenanker.flashnews.dao.LoginTicketDAO;
 import com.allenanker.flashnews.dao.NewsDAO;
 import com.allenanker.flashnews.dao.UserDAO;
@@ -31,7 +31,7 @@ public class InitDatabaseTests {
     LoginTicketDAO loginTicketDAO;
 
     @Autowired
-    CommentDao commentDAO;
+    CommentDAO commentDAO;
 
 	@Test
 	public void test1() {
