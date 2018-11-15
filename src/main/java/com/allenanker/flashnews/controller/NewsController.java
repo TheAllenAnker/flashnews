@@ -1,10 +1,7 @@
 package com.allenanker.flashnews.controller;
 
 import com.allenanker.flashnews.model.*;
-import com.allenanker.flashnews.service.CommentService;
-import com.allenanker.flashnews.service.NewsService;
-import com.allenanker.flashnews.service.QiniuService;
-import com.allenanker.flashnews.service.UserService;
+import com.allenanker.flashnews.service.*;
 import com.allenanker.flashnews.util.FlashNewsUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +34,9 @@ public class NewsController {
 
     @Autowired
     private CommentService commentService;
+
+    @Autowired
+    private LikeService likeService;
 
     @Autowired
     private HostHolder hostHolder;
@@ -76,8 +76,13 @@ public class NewsController {
             }
             map.put("commentvos", commentVOs);
         }
+        int likeStatus = 0;
+        if (hostHolder.getUser() != null) {
+            likeStatus = likeService.getLikeStatus(hostHolder.getUser().getId(), EntityType.ENTITY_NEWS, newsId);
+        }
 
         map.put("news", news);
+        map.put("like", likeStatus);
         User owner = userService.getUser(news.getUserId());
         if (owner != null) {
             map.put("owner", owner);

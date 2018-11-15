@@ -4,19 +4,29 @@
         <div class="post detail">
 
             <div class="votebar">
-                <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span
+                <#if (like=1)>
+                <button class="click-like up pressed" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span
                         class="count">${news.likeCount!"0"}</span></button>
-                <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
+                <#else>
+                 <button class="click-like up" aria-pressed="false" title="赞同"><i class="vote-arrow"></i><span
+                         class="count">${news.likeCount!"0"}</span></button>
+                </#if>
+                <#if (like=-1)>
+                <button class="click-dislike down pressed" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
                 </button>
+                <#else>
+                 <button class="click-dislike down" aria-pressed="true" title="反对"><i class="vote-arrow"></i>
+                 </button>
+                </#if>
             </div>
 
             <div class="content" data-url="http://nowcoder.com/posts/5l3hjr">
                 <div class="content-img">
-                    <img src="$!{news.image}" alt="">
+                    <img src="${news.image}" alt="">
                 </div>
                 <div class="content-main">
                     <h3 class="title">
-                        <a target="_blank" rel="external nofollow" href="$!{news.link}">${news.title!""}</a>
+                        <a target="_blank" rel="external nofollow" href="${news.link}">${news.title!""}</a>
                     </h3>
                     <div class="meta">
                         ${news.link}

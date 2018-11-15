@@ -16,7 +16,7 @@ public class LikeService {
      * @param entityType
      * @return
      */
-    public int getLikeStatus(int userId, int entityId, int entityType) {
+    public int getLikeStatus(int userId, int entityType, int entityId) {
         String likeKey = RedisKeyUtil.getLikeKey(entityId, entityType);
         String dislikeKey = RedisKeyUtil.getDislikeKey(entityId, entityType);
         if (jedisService.sismemeber(likeKey, String.valueOf(userId))) {
@@ -35,9 +35,9 @@ public class LikeService {
      * @param entityType
      * @return
      */
-    public long like(int userId, int entityId, int entityType) {
-        String likeKey = RedisKeyUtil.getLikeKey(entityId, entityType);
-        String dislikeKey = RedisKeyUtil.getDislikeKey(entityId, entityType);
+    public long like(int userId, int entityType, int entityId) {
+        String likeKey = RedisKeyUtil.getLikeKey(entityType, entityId);
+        String dislikeKey = RedisKeyUtil.getDislikeKey(entityType, entityId);
         jedisService.sadd(likeKey, String.valueOf(userId));
         jedisService.srem(dislikeKey, String.valueOf(userId));
 
@@ -51,9 +51,9 @@ public class LikeService {
      * @param entityType
      * @return
      */
-    public long dislike(int userId, int entityId, int entityType) {
-        String likeKey = RedisKeyUtil.getLikeKey(entityId, entityType);
-        String dislikeKey = RedisKeyUtil.getDislikeKey(entityId, entityType);
+    public long dislike(int userId, int entityType, int entityId) {
+        String likeKey = RedisKeyUtil.getLikeKey(entityType, entityId);
+        String dislikeKey = RedisKeyUtil.getDislikeKey(entityType, entityId);
         jedisService.srem(likeKey, String.valueOf(userId));
         jedisService.sadd(dislikeKey, String.valueOf(userId));
 
