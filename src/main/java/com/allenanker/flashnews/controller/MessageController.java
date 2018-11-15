@@ -1,10 +1,12 @@
 package com.allenanker.flashnews.controller;
 
-import com.allenanker.flashnews.model.*;
+import com.allenanker.flashnews.model.HostHolder;
+import com.allenanker.flashnews.model.Message;
+import com.allenanker.flashnews.model.User;
+import com.allenanker.flashnews.model.ViewObject;
 import com.allenanker.flashnews.service.MessageService;
 import com.allenanker.flashnews.service.UserService;
 import com.allenanker.flashnews.util.FlashNewsUtil;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

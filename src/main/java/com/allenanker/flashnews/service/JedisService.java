@@ -12,6 +12,21 @@ public class JedisService implements InitializingBean {
     private static final Logger logger = LoggerFactory.getLogger(JedisService.class);
     private JedisPool jedisPool;
 
+    public long scard(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.scard(key);
+        } catch (Exception e) {
+            logger.error("Set element adding error: " + e.getMessage());
+            return -1;
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+    }
+
     public long srem(String key, String value) {
         Jedis jedis = null;
         try {
