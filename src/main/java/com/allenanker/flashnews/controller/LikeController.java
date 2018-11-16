@@ -1,7 +1,11 @@
 package com.allenanker.flashnews.controller;
 
+import com.allenanker.flashnews.async.EventModel;
+import com.allenanker.flashnews.async.EventProducer;
+import com.allenanker.flashnews.async.EventType;
 import com.allenanker.flashnews.model.EntityType;
 import com.allenanker.flashnews.model.HostHolder;
+import com.allenanker.flashnews.model.News;
 import com.allenanker.flashnews.model.User;
 import com.allenanker.flashnews.service.LikeService;
 import com.allenanker.flashnews.service.NewsService;
@@ -24,6 +28,9 @@ public class LikeController {
     @Autowired
     private NewsService newsService;
 
+    @Autowired
+    private EventProducer eventProducer;
+
     @RequestMapping(path = {"/like"}, method = {RequestMethod.GET, RequestMethod.POST})
     @ResponseBody
     public String like(@RequestParam("newsId") int newsId) {
@@ -34,6 +41,11 @@ public class LikeController {
         int userId = user.getId();
         long likeCount = likeService.like(userId, EntityType.ENTITY_NEWS, newsId);
         newsService.updateLikesCount(newsId, (int) likeCount);
+
+        News news = newsService.getById(newsId);
+        eventProducer.sendEvent(new EventModel(EventType.LIKE).setActorId(hostHolder.getUser().getId())
+                .setEntityType(EntityType.ENTITY_NEWS).setEntityId(newsId).setEntityOwnerId(news.getUserId()));
+
         return FlashNewsUtil.getJSONString(0, String.valueOf(likeCount));
     }
 
