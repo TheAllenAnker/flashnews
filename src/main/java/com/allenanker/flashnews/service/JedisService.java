@@ -1,5 +1,6 @@
 package com.allenanker.flashnews.service;
 
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -7,10 +8,70 @@ import org.springframework.stereotype.Service;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.List;
+
 @Service
 public class JedisService implements InitializingBean {
     private static final Logger logger = LoggerFactory.getLogger(JedisService.class);
     private JedisPool jedisPool;
+
+    public List<String> brpop(int timeout, String key) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.brpop(timeout, key);
+        } catch (Exception e) {
+            logger.error("brpop error: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void lpush(String key, String value) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            jedis.lpush(key, value);
+        } catch (Exception e) {
+            logger.error("lpush error: " + e.getMessage());
+        }
+    }
+
+    public <T> T getObject(String key, Class<T> clazz) {
+        String value = get(key);
+        if (value != null) {
+            return JSON.parseObject(value, clazz);
+        }
+        return null;
+    }
+
+    public void setObject(String key, Object object) {
+        set(key, JSON.toJSONString(object));
+    }
+
+    public String get(String key) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            return jedis.get(key);
+        } catch (Exception e) {
+            logger.error("Set element adding error: " + e.getMessage());
+            return null;
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+    }
+
+    public void set(String key, String value) {
+        Jedis jedis = null;
+        try {
+            jedis = jedisPool.getResource();
+            jedis.set(key, value);
+        } catch (Exception e) {
+            logger.error("Set element adding error: " + e.getMessage());
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+    }
 
     public long scard(String key) {
         Jedis jedis = null;
